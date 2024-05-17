@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        body {
+            background-color: silver;
+        }
+
+        .apply_box {
+            max-width: 600px;
+            padding: 20px;
+            background-color: white;
+            margin: 0 auto;
+            margin-top: 50px;
+            box-shadow: 2px 3px 15px 1px black;
+        }
+
+        .small {
+            font-size: 17px;
+        }
+
+        .form_container {
+            margin-top: 35px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .form_control {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 8px 10px;
+            border: 1px solid grey;
+            border-radius: 5px;
+            font-size: 13px;
+        }
+
+        input:focus {
+            outline-color: rgb(210, 21, 147);
+        }
+
+        .button_container {
+            display: flex;
+            justify-content: end;
+            margin-top: 20px;
+            padding: 5px;
+        }
+
+        button {
+            background-color: rgb(211, 33, 33);
+            border-radius: 7px;
+            border: transparent solid 2px;
+            padding: 5px 10px;
+            color: whitesmoke;
+            padding: 10px;
+        }
+
+        button:hover {
+            background-color: rgb(15, 117, 225);
+            color: rgb(15, 14, 14);
+            cursor: pointer;
+        }
+
+        .textarea_control {
+            grid-column: 1 / span 2;
+        }
+
+        .textarea_control textarea {
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="apply_box">
+            <h1>Job Posting <span class="small"></span></h1>
+            <form action="/admin/add" method="POST" enctype="multipart/form-data">
+                <div class="form_container">
+                    <div class="form_control">
+                        <label for="name">Name</label>
+                        <input id="name" name="name" type="text" placeholder="Enter your name">
+                    </div>
+                    <div class="form_control">
+                        <label for="job">Job Type</label>
+                        <select id="job" name="job">
+                            <option value="Founder">Founder</option>
+                            <option value="Director">Director</option>
+                            <option value="Scientific">Scientific</option>
+                            <option value="Technical">Technical</option>
+                            <option value="Administrative">Administrative</option>
+                        </select>
+                    </div>
+                    <div class="form_control">
+                        <label for="cv">Upload Your CV</label>
+                        <input type="file" id="cv" name="cv">
+                    </div>
+                </div>
+                <div class="button_container">
+                    <button type="submit">Post now</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

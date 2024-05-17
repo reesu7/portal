@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Bizpost</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid d-none d-lg-block">
+        <div class="row align-items-center bg-dark px-lg-5">
+            <div class="col-lg-9">
+                <nav class="navbar navbar-expand-sm bg-dark p-0">
+                    <ul class="navbar-nav ml-n2">
+                        <li class="nav-item border-right border-secondary">
+                            <a class="nav-link text-body small" href="#">Monday, January 1, 2045</a>
+                        </li>
+
+                        <li class="nav-item border-right border-secondary">
+                            <a class="nav-link text-body small" href="#">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-body small" href="admin.html">Post</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+        </div>
+        <div class="row align-items-center bg-white py-3 px-lg-5">
+            <div class="col-lg-4">
+                <a href="index.html" class="navbar-brand p-0 d-none d-lg-block">
+                    <h1 class="m-0 display-4 text-uppercase text-primary">Biz<span
+                            class="text-secondary font-weight-normal">News</span></h1>
+                </a>
+            </div>
+
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid p-0">
+        <nav class="navbar navbar-expand-lg bg-dark navbar-dark py-2 py-lg-0 px-lg-5">
+            <a href="index.html" class="navbar-brand d-block d-lg-none">
+                <h1 class="m-0 display-4 text-uppercase text-primary">Biz<span
+                        class="text-white font-weight-normal">Job</span></h1>
+            </a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+        </nav>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- News With Sidebar Start -->
+    <div class="container-fluid">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <!-- Move user-list div here -->
+                    <div id="user-list"></div>
+                </div>
+
+                <div class="col-lg-4">
+                    <!-- Tags Start -->
+                    <div class="mb-3">
+                        <div class="section-title mb-0">
+                            <h4 class="m-0 text-uppercase font-weight-bold">Tags</h4>
+                        </div>
+                        <div class="bg-white border border-top-0 p-3">
+                            <div class="d-flex flex-wrap m-n1">
+                                <a href="#" class="btn btn-sm btn-outline-secondary m-1 job-btn"
+                                    data-job="Founder">Founder</a>
+                                <a href="#" class="btn btn-sm btn-outline-secondary m-1 job-btn"
+                                    data-job="Director">Director</a>
+                                <a href="#" class="btn btn-sm btn-outline-secondary m-1 job-btn"
+                                    data-job="Scientific">Scientific</a>
+                                <a href="#" class="btn btn-sm btn-outline-secondary m-1 job-btn"
+                                    data-job="Technical">Technical</a>
+                                <a href="#" class="btn btn-sm btn-outline-secondary m-1 job-btn"
+                                    data-job="Administrative">Administrative</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Tags End -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-square back-to-top"><i class="fa fa-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const jobButtons = document.querySelectorAll('.job-btn');
+
+            jobButtons.forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault(); 
+                    const jobType = button.dataset.job;
+                    fetch(`/users/${jobType}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            const userListContainer = document.getElementById('user-list');
+                            userListContainer.innerHTML = ''; 
+
+                            data.forEach(user => {
+                                const userElement = document.createElement('div');
+                                userElement.classList.add('user-item');
+
+                                userElement.innerHTML = `
+                                    <div class="position-relative mb-3 mt-3">
+                                        <img class="img-fluid w-100" src="../uploads/${user.imagePath}" style="object-fit: cover;">
+                                        <div class="d-flex justify-content-between bg-white border border-top-0 p-4">
+                                            <div class="d-flex align-items-center">
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="section-title mb-0">
+                                            <h4 class="m-0 text-uppercase font-weight-bold">Name-${user.name}</h4>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="section-title mb-0">
+                                            <h4 class="m-0 text-uppercase font-weight-bold">Job-${user.jobType}</h4>
+                                        </div>
+                                    </div>
+                                `;
+                                userListContainer.appendChild(userElement);
+                            });
+                        })
+                        .catch(error => {
+                            console.error('Error fetching users:', error);
+                        });
+                });
+            });
+
+            // Trigger click event on the "Founder" button by default
+            const founderButton = document.querySelector('.job-btn[data-job="Founder"]');
+            founderButton.click();
+        });
+    </script>
+
+</body>
+
+</html>
